@@ -1,0 +1,27 @@
+/dev/disk0 (internal, physical):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *251.0 GB   disk0
+   1:                        EFI EFI                     209.7 MB   disk0s1
+   2:          Apple_CoreStorage Sans titre              250.1 GB   disk0s2
+   3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
+/dev/disk1 (internal, virtual):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:                  Apple_HFS Sans titre             +249.8 GB   disk1
+                                 Logical Volume on disk0s2
+                                 F0309A7D-983C-4343-A9B7-3BE451341852
+                                 Unlocked Encrypted
+/dev/disk2 (external, physical):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *16.0 GB    disk2
+   1:                        EFI EFI                     209.7 MB   disk2s1
+   2:       Microsoft Basic Data COINCOIN                15.8 GB    disk2s2
+/dev/disk1 (external, physical):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *16.0 GB    disk2
+   1:                        EFI EFI                     209.7 MB   disk2s1
+   2:       Microsoft Basic Data COINCOIN                15.8 GB    disk2s2
+/dev/disk3 (external, physical):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *16.0 GB    disk2
+   1:                        EFI EFI                     209.7 MB   disk2s1
+   2:       Microsoft Basic Data COINCOIN                15.8 GB    disk2s2
