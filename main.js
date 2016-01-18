@@ -1,54 +1,54 @@
 'use strict';
 
 const electron = require('electron');
-// Module to control application life.
+const exec = require('child_process').exec;
 const app = electron.app;
-// Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
-function createWindow () {
-  // Create the browser window.
-  mainWindow = new BrowserWindow({width: 600, height: 800});
+function createWindow() {
+    mainWindow = new BrowserWindow({width: 600, height: 800});
 
-  // and load the index.html of the app.
-  mainWindow.loadURL('file://' + __dirname + '/app/index.html');
+    mainWindow.loadURL('file://' + __dirname + '/app/index.html');
 
-  // Open the DevTools.
-   mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
-  // Emitted when the window is closed.
-  mainWindow.on('closed', function() {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null;
-  });
+    mainWindow.on('closed', function () {
+        mainWindow = null;
+    });
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-app.on('ready', function(){
-  createWindow();
-  console.log('test');
+app.on('ready', function () {
+    createWindow();
+    getDrivesList();
 });
 
-// Quit when all windows are closed.
 app.on('window-all-closed', function () {
-  // On OS X it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
 });
 
 app.on('activate', function () {
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  if (mainWindow === null) {
-    createWindow();
-  }
+    if (mainWindow === null) {
+        createWindow();
+    }
 });
+
+function getDrivesList() {
+//  Command to get all connected drives
+//  diskutil list
+    exec('diskutil list', function (error, stdout, stderr) {
+        if (error == null) {
+            if (stderr.length == 0) {
+                var regex = /\/[a-z]+\/[a-z]+[0-9]+\ \(external, physical\)/;
+            }
+            else {
+                console.log("err " + stderr.length);
+            }
+        } else {
+            console.log(error);
+        }
+    })
+}
