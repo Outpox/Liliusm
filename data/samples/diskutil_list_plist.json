@@ -1,0 +1,206 @@
+{
+  "plist": {
+    "$": {
+      "version": "1.0"
+    },
+    "dict": [
+      {
+        "key": [
+          "AllDisks",
+          "AllDisksAndPartitions",
+          "VolumesFromDisks",
+          "WholeDisks"
+        ],
+        "array": [
+          {
+            "string": [
+              "disk0",
+              "disk0s1",
+              "disk0s2",
+              "disk0s3",
+              "disk1",
+              "disk2",
+              "disk2s1",
+              "disk2s2"
+            ]
+          },
+          {
+            "dict": [
+              {
+                "key": [
+                  "Content",
+                  "DeviceIdentifier",
+                  "Partitions",
+                  "Size"
+                ],
+                "string": [
+                  "GUID_partition_scheme",
+                  "disk0"
+                ],
+                "array": [
+                  {
+                    "dict": [
+                      {
+                        "key": [
+                          "Content",
+                          "DeviceIdentifier",
+                          "DiskUUID",
+                          "Size",
+                          "VolumeName",
+                          "VolumeUUID"
+                        ],
+                        "string": [
+                          "EFI",
+                          "disk0s1",
+                          "83AF9EA7-B4E4-46FC-90E3-3C6AF54EE627",
+                          "EFI",
+                          "0E239BC6-F960-3107-89CF-1C97F78BB46B"
+                        ],
+                        "integer": [
+                          "209715200"
+                        ]
+                      },
+                      {
+                        "key": [
+                          "Content",
+                          "DeviceIdentifier",
+                          "DiskUUID",
+                          "Size"
+                        ],
+                        "string": [
+                          "Apple_CoreStorage",
+                          "disk0s2",
+                          "1524D6BE-49C6-4B20-897E-1384EE0F3667"
+                        ],
+                        "integer": [
+                          "250140434432"
+                        ]
+                      },
+                      {
+                        "key": [
+                          "Content",
+                          "DeviceIdentifier",
+                          "DiskUUID",
+                          "Size",
+                          "VolumeName",
+                          "VolumeUUID"
+                        ],
+                        "string": [
+                          "Apple_Boot",
+                          "disk0s3",
+                          "EE7EF16C-3DA6-4823-8B68-A239EEEE5657",
+                          "Recovery HD",
+                          "9CF379C1-CC57-396A-BC60-EA0D855F58EA"
+                        ],
+                        "integer": [
+                          "650002432"
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "integer": [
+                  "251000193024"
+                ]
+              },
+              {
+                "key": [
+                  "Content",
+                  "DeviceIdentifier",
+                  "MountPoint",
+                  "Size",
+                  "VolumeName"
+                ],
+                "string": [
+                  "Apple_HFS",
+                  "disk1",
+                  "/",
+                  "Sans titre"
+                ],
+                "integer": [
+                  "249795969024"
+                ]
+              },
+              {
+                "key": [
+                  "Content",
+                  "DeviceIdentifier",
+                  "Partitions",
+                  "Size"
+                ],
+                "string": [
+                  "GUID_partition_scheme",
+                  "disk2"
+                ],
+                "array": [
+                  {
+                    "dict": [
+                      {
+                        "key": [
+                          "Content",
+                          "DeviceIdentifier",
+                          "DiskUUID",
+                          "Size",
+                          "VolumeName",
+                          "VolumeUUID"
+                        ],
+                        "string": [
+                          "EFI",
+                          "disk2s1",
+                          "BB0C26C1-3673-4429-85B2-F15AEF06F8DD",
+                          "EFI",
+                          "0E239BC6-F960-3107-89CF-1C97F78BB46B"
+                        ],
+                        "integer": [
+                          "209715200"
+                        ]
+                      },
+                      {
+                        "key": [
+                          "Content",
+                          "DeviceIdentifier",
+                          "DiskUUID",
+                          "MountPoint",
+                          "Size",
+                          "VolumeName",
+                          "VolumeUUID"
+                        ],
+                        "string": [
+                          "Microsoft Basic Data",
+                          "disk2s2",
+                          "8E929FCF-C227-493B-9740-B592F2D6F8D4",
+                          "/Volumes/COINCOIN",
+                          "COINCOIN",
+                          "6D1D2803-0CBE-32DB-85AB-5ACE898D7980"
+                        ],
+                        "integer": [
+                          "15831400448"
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "integer": [
+                  "16043212800"
+                ]
+              }
+            ]
+          },
+          {
+            "string": [
+              "Sans titre",
+              "COINCOIN"
+            ]
+          },
+          {
+            "string": [
+              "disk0",
+              "disk1",
+              "disk2"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
