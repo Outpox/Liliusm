@@ -2,6 +2,8 @@
 
 const electron = require('electron');
 const exec = require('child_process').exec;
+const parseString = require('xml2js').parseString;
+const filesize = require('file-size');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
@@ -39,13 +41,27 @@ app.on('activate', function () {
 function getDrivesList() {
 //  Command to get all connected drives
 //  diskutil list
-    exec('diskutil list', function (error, stdout, stderr) {
+    exec('diskutil list -plist', function (error, stdout, stderr) {
         if (error == null) {
             if (stderr.length == 0) {
-                var regex = /\/[a-z]+\/[a-z]+[0-9]+\ \(external, physical\)/;
+                parseString(stdout, function (err, result) {
+                    if (err !== null) {
+                        console.log(err);
+                    } else {
+                        var diskSize = result.plist.dict[0].array[1].dict;
+                        var diskNames = result.plist.dict[0].array[2].string;
+                        var diskPaths = result.plist.dict[0].array[3].string;
+                        var disks = [];
+                        for (var i = 0; i < diskNames.length; i++) {
+                            var size = filesize(parseInt(diskSize[i].integer[0])).human();
+                            disks.push({'name': diskNames[i], 'path': diskPaths[i], 'size': size});
+                        }
+                        console.log(disks);
+                    }
+                });
             }
             else {
-                console.log("err " + stderr.length);
+                console.log(stderr);
             }
         } else {
             console.log(error);
