@@ -4,6 +4,7 @@ const electron = require('electron');
 const exec = require('child_process').exec;
 const parseString = require('xml2js').parseString;
 const filesize = require('file-size');
+const ipcMain = require('electron').ipcMain;
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
@@ -23,7 +24,13 @@ function createWindow() {
 
 app.on('ready', function () {
     createWindow();
-    getDrivesList();
+
+    ipcMain.on('drives-list', function(event, arg) {
+        getDrivesInfos(function (list) {
+            event.sender.send('drives-list-async', list);
+        })
+    });
+
 });
 
 app.on('window-all-closed', function () {
@@ -38,25 +45,17 @@ app.on('activate', function () {
     }
 });
 
-function getDrivesList() {
-//  Command to get all connected drives
-//  diskutil list
+function getDrivesNames(callback) {
+//  Command to get all connected drives names
     exec('diskutil list -plist', function (error, stdout, stderr) {
         if (error == null) {
             if (stderr.length == 0) {
                 parseString(stdout, function (err, result) {
-                    if (err !== null) {
-                        console.log(err);
-                    } else {
-                        var diskSize = result.plist.dict[0].array[1].dict;
+                    if (err == null) {
                         var diskNames = result.plist.dict[0].array[2].string;
-                        var diskPaths = result.plist.dict[0].array[3].string;
-                        var disks = [];
-                        for (var i = 0; i < diskNames.length; i++) {
-                            var size = filesize(parseInt(diskSize[i].integer[0])).human();
-                            disks.push({'name': diskNames[i], 'path': diskPaths[i], 'size': size});
-                        }
-                        console.log(disks);
+                        callback(diskNames);
+                    } else {
+                        console.log(err);
                     }
                 });
             }
@@ -67,4 +66,42 @@ function getDrivesList() {
             console.log(error);
         }
     })
+}
+
+function getDrivesInfos(callback) {
+//  Command to get all connected drives
+    var disks = [];
+    getDrivesNames(function (list) {
+        if (list.length > 0) {
+            list.forEach(function (diskName, i) {
+                //We need to push a backslash before spaces
+                var parsedName = diskName.replace(new RegExp(" ", 'g'), "\\ ");
+                exec('diskutil list -plist ' + parsedName, function (error, stdout, stderr) {
+                    if (error == null) {
+                        if (stderr.length == 0) {
+                            parseString(stdout, function (err, result) {
+                                if (err == null) {
+                                    var diskSize = parseInt(result.plist.dict[0].array[1].dict[0].integer[0]);
+                                    var diskPath = result.plist.dict[0].array[3].string[0];
+                                    var size = filesize(diskSize).human();
+                                    disks.push({'name': diskName, 'path': diskPath, 'size': size});
+
+                                    if (i == list.length - 1) {
+                                        callback(disks);
+                                    }
+                                } else {
+                                    console.log(err);
+                                }
+                            });
+                        }
+                        else {
+                            console.log(stderr);
+                        }
+                    } else {
+                        console.log(error);
+                    }
+                });
+            });
+        }
+    });
 }
