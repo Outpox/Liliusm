@@ -16,9 +16,18 @@
     <br>
     Lang: <script>document.write(navigator.language)</script>
     <br>
-    <!--Debug: <script>BrowserWindow.debug ? document.write("true") : document.write("false")</script>-->
-
+    <button onclick="getDrivesList()">test</button>
     <!--scripts-->
+    <script>
+      const ipcRenderer = require('electron').ipcRenderer;
+      function getDrivesList() {
+        ipcRenderer.send('drives-list');
+        ipcRenderer.on('drives-list-async', function(event, arg) {
+          console.log(arg);
+        });
+      }
+      getDrivesList();
+    </script>
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/materialize-css/node_modules/hammerjs/hammer.min.js"></script>
     <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
