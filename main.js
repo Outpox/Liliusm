@@ -26,8 +26,8 @@ app.on('ready', function () {
     createWindow();
 
     ipcMain.on('drives-list', function(event, arg) {
-        getDrivesInfos(function (list) {
-            event.sender.send('drives-list-async', list);
+        getDrivesInfosWindows(function (list) {
+            event.returnValue = list;
         })
     });
 
@@ -45,6 +45,10 @@ app.on('activate', function () {
     }
 });
 
+/**
+ * Retrieves the disk name of all connected drives
+ * @param callback - Array of disk name
+ */
 function getDrivesNames(callback) {
 //  Command to get all connected drives names
     exec('diskutil list -plist', function (error, stdout, stderr) {
@@ -68,6 +72,11 @@ function getDrivesNames(callback) {
     })
 }
 
+/**
+ * Retrieves information from disk by using their name.
+ * It had to be separated because the disk list name array can be shorter than the actual disk list information array
+ * @param callback - Array
+ */
 function getDrivesInfos(callback) {
 //  Command to get all connected drives
     var disks = [];
@@ -104,4 +113,24 @@ function getDrivesInfos(callback) {
             });
         }
     });
+}
+
+/**
+ * Simulate getDrivesInfos() when developing on Windows
+ * @param callback
+ */
+function getDrivesInfosWindows(callback) {
+    var drives = [
+        {
+            'name': 'Sans titre',
+            'path': 'disk1',
+            'size': '236 GiB'
+        },
+        {
+            'name': 'COINCOIN',
+            'path': 'disk4',
+            'size': '15.6 GiB'
+        }
+    ];
+    callback(drives);
 }
