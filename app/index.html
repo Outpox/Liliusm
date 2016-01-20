@@ -16,15 +16,17 @@
     <br>
     Lang: <script>document.write(navigator.language)</script>
     <br>
-    <button onclick="getDrivesList()">test</button>
+    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+    <br>
+    <i class="large material-icons">insert_chart</i>
     <!--scripts-->
     <script>
       const ipcRenderer = require('electron').ipcRenderer;
       function getDrivesList() {
-        ipcRenderer.send('drives-list');
-        ipcRenderer.on('drives-list-async', function(event, arg) {
-          console.log(arg);
-        });
+        console.info('Retrieving drives list');
+        var list = ipcRenderer.sendSync('drives-list');
+        console.log(list);
+        return list;
       }
       getDrivesList();
     </script>
