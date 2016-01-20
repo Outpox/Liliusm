@@ -1,37 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
     <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
     <link rel="stylesheet" href="css/main.css">
-  </head>
-  <body class="teal lighten-3">
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+</head>
+<body class="teal lighten-5">
+<div class="container">
+    <div class="row center">
+        <h1>LILIUSM</h1>
+    </div>
+    <div class="teal lighten-4" style="padding: 2px 20px; border-radius: 3px">
+        <div class="row" style="margin-bottom: 0;">
+            <h3 style="margin-bottom: 0;">
+                <span data-resource="chooseDrive"></span>
+                <a onclick="updateDrivesList()" class="btn-floating waves-effect waves-light red"
+                   style="line-height: 32px;">
+                    <i class="material-icons">loop</i>
+                </a>
+            </h3>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <select id="drivesList"></select>
+            </div>
+        </div>
+    </div>
+    We are using node
+    <script>document.write(process.versions.node)</script>
+    ,
+    Chrome
+    <script>document.write(process.versions.chrome)</script>
+    ,
+    and Electron
+    <script>document.write(process.versions.electron)</script>
+    .
     <br>
-    OS: <script>document.write(process.platform)</script>
+    OS:
+    <script>document.write(process.platform)</script>
     <br>
-    Lang: <script>document.write(navigator.language)</script>
-    <br>
-    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-    <br>
-    <i class="large material-icons">insert_chart</i>
-    <!--scripts-->
-    <script>
-      const ipcRenderer = require('electron').ipcRenderer;
-      function getDrivesList() {
-        console.info('Retrieving drives list');
-        var list = ipcRenderer.sendSync('drives-list');
-        console.log(list);
-        return list;
-      }
-      getDrivesList();
-    </script>
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/materialize-css/node_modules/hammerjs/hammer.min.js"></script>
-    <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
-  </body>
+    Lang:
+    <script>document.write(navigator.language)</script>
+</div>
+<!--scripts-->
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/materialize-css/node_modules/hammerjs/hammer.min.js"></script>
+<script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/menu.js"></script>
+</body>
 </html>
