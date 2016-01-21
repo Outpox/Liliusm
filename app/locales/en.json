@@ -4,5 +4,7 @@
 	"unlockHardDrive": "Unlock hard drives",
 	"chooseDrive": "Choose a drive",
 	"selectFile": "Select a file",
-	"file": "File"
+	"file": "File",
+	"fileTypeError": " Error, file must be a valid .iso !",
+	"fileSizeError": " Error, file size is bigger than the disk size!"
 }

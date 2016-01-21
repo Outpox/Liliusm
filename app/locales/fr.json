@@ -4,5 +4,7 @@
 	"unlockHardDrive": "Débloquer les disques durs",
 	"chooseDrive": "Choisissez un disque",
 	"selectFile": "Sélectionnez un fichier",
-	"file": "Fichier"
+	"file": "Fichier",
+	"fileTypeError": " Erreur, le fichier doit être de type .iso valide !",
+	"fileSizeError": " Erreur, la taille de l'image est plus grande que la capacité du périphérique !"
 }
