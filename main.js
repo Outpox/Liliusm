@@ -136,6 +136,13 @@ function getDrivesInfosWindows(callback) {
             'size': '15.6 GiB',
             'realSize': '16000000000',
             'type': 'usb'
+        },
+        {
+            'name': 'Small space',
+            'path': 'disk5',
+            'size': '1 GiB',
+            'realSize': '1000000000',
+            'type': 'usb'
         }
     ];
     callback(drives);
