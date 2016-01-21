@@ -1,4 +1,8 @@
 {
 	"lang": "Français",
-	"chooseDrive": "Choisissez un disque"
+	"optionsMenu": "Options",
+	"unlockHardDrive": "Débloquer les disques durs",
+	"chooseDrive": "Choisissez un disque",
+	"selectFile": "Sélectionnez un fichier",
+	"file": "Fichier"
 }

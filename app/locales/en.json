@@ -1,4 +1,8 @@
 {
 	"lang": "English",
-	"chooseDrive": "Choose a drive"
+	"optionsMenu": "Options",
+	"unlockHardDrive": "Unlock hard drives",
+	"chooseDrive": "Choose a drive",
+	"selectFile": "Select a file",
+	"file": "File"
 }
