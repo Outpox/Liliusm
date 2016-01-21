@@ -26,11 +26,10 @@ app.on('ready', function () {
     createWindow();
 
     ipcMain.on('drives-list', function(event, arg) {
-        getDrivesInfosWindows(function (list) {
+        getDrivesInfos(function (list) {
             event.returnValue = list;
         })
     });
-
 });
 
 app.on('window-all-closed', function () {
@@ -93,9 +92,12 @@ function getDrivesInfos(callback) {
                                     var diskSize = parseInt(result.plist.dict[0].array[1].dict[0].integer[0]);
                                     var diskPath = result.plist.dict[0].array[3].string[0];
                                     var size = filesize(diskSize).human();
-                                    disks.push({'name': diskName, 'path': diskPath, 'size': size});
+                                    //If size is greater than 64Gb it's most likely a hard drive.
+                                    //TODO Improve disk type detection
+                                    var type = (diskSize > 64000000000) ? 'hdd' : 'usb';
+                                    disks.push({'name': diskName, 'path': diskPath, 'size': size, 'realSize': diskSize, 'type': type});
 
-                                    if (i == list.length - 1) {
+                                    if (list.length == disks.length) {
                                         callback(disks);
                                     }
                                 } else {
