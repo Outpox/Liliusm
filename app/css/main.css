@@ -8,11 +8,12 @@
     url(../font/MaterialIcons-Regular.woff) format('woff'),
     url(../font/MaterialIcons-Regular.ttf) format('truetype');
 }
+
 .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;
     font-style: normal;
-    font-size: 24px;  /* Preferred icon size */
+    font-size: 24px; /* Preferred icon size */
     display: inline-block;
     width: 1em;
     height: 1em;
@@ -35,5 +36,7 @@
     font-feature-settings: 'liga';
 }
 
-html, body {
+.step {
+    padding: 2px 20px;
+    border-radius: 3px
 }

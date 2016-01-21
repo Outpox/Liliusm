@@ -11,20 +11,40 @@
     <div class="row center">
         <h1>LILIUSM</h1>
     </div>
-    <div class="teal lighten-4" style="padding: 2px 20px; border-radius: 3px">
-        <div class="row" style="margin-bottom: 0;">
-            <h3 style="margin-bottom: 0;">
-                <span data-resource="chooseDrive"></span>
-                <a onclick="updateDrivesList()" class="btn-floating waves-effect waves-light red"
-                   style="line-height: 32px;">
-                    <i class="material-icons">loop</i>
-                </a>
-            </h3>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <select id="drivesList"></select>
+    <div class="row">
+        <div class="teal lighten-4 step">
+            <div class="row" style="margin-bottom: 0;">
+                <h3 style="margin-bottom: 0;">
+                    <span data-resource="chooseDrive"></span>
+                    <a onclick="updateDrivesList()" class="btn-floating waves-effect waves-light red"
+                       style="line-height: 32px;">
+                        <i class="material-icons">loop</i>
+                    </a>
+                </h3>
             </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="drivesList"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="teal lighten-4 step">
+            <h3 style="margin-bottom: 0;">
+                <span data-resource="selectFile"></span>
+            </h3>
+            <form action="#">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span data-resource="file"></span>
+                        <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     We are using node
