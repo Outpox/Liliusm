@@ -40,3 +40,8 @@
     padding: 2px 20px;
     border-radius: 3px
 }
+
+.fileErrorSpan {
+    top: -6px;
+    position: relative;
+}
