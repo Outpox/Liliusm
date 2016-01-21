@@ -26,7 +26,7 @@ app.on('ready', function () {
     createWindow();
 
     ipcMain.on('drives-list', function(event, arg) {
-        getDrivesInfos(function (list) {
+        getDrivesInfosWindows(function (list) {
             event.returnValue = list;
         })
     });
@@ -126,12 +126,16 @@ function getDrivesInfosWindows(callback) {
         {
             'name': 'Sans titre',
             'path': 'disk1',
-            'size': '236 GiB'
+            'size': '236 GiB',
+            'realSize': '250000000000',
+            'type': 'hdd'
         },
         {
             'name': 'COINCOIN',
             'path': 'disk4',
-            'size': '15.6 GiB'
+            'size': '15.6 GiB',
+            'realSize': '16000000000',
+            'type': 'usb'
         }
     ];
     callback(drives);
