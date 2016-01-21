@@ -26,7 +26,7 @@ function updateDrivesList() {
         if (drive.type == 'hdd') {
             option.attr('data-icon', 'img/harddisk.png');
             if (unlockedHardDrive) {
-                option.prop('disabled', 'false');
+                if (option.disabled) option.disabled = false;
             }
             else {
                 option.prop('disabled', 'true');
@@ -51,7 +51,6 @@ function translate(lang) {
 }
 
 function unlockHardDrive() {
-    console.log('called');
     unlockedHardDrive = true;
     updateDrivesList();
 }
