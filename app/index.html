@@ -34,17 +34,23 @@
             <h3 style="margin-bottom: 0;">
                 <span data-resource="selectFile"></span>
             </h3>
-            <form action="#">
+            <form>
                 <div class="file-field input-field">
                     <div class="btn">
                         <span data-resource="file"></span>
-                        <input type="file">
+                        <input id="inputFile" type="file">
                     </div>
                     <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
+                        <input id="filePath" class="file-path validate" type="text">
                     </div>
                 </div>
             </form>
+            <div id="fileTypeError" class="red-text" style="display: none;">
+                <i class="material-icons">error_outline</i><span data-resource="fileTypeError"></span>
+            </div>
+            <div id="fileSizeError" class="red-text" style="display: none;">
+                <i class="material-icons">error_outline</i><span data-resource="fileSizeError"></span>
+            </div>
         </div>
     </div>
     We are using node
