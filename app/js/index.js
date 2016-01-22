@@ -64,12 +64,12 @@ function unlockHardDrive() {
 }
 
 /**
- * Awesome function which lets you determine precisely the type of a file
+ * Awesome function which lets you determine precisely the type of a file.
+ * Tough it doesn't seem to be very efficient with large files.
  * Source: http://stackoverflow.com/a/29672957/3560404
- * @param file - File Object | The file we want to check
- * @param callback - Boolean | File type verified or not
+ * @param callback { function } - File type verified or not
  */
-function verifyFileType(file, callback) {
+function verifyFileTypeByHeader(callback) {
     var fileReader = new FileReader();
     fileReader.onloadend = function (e) {
         var arr = (new Uint8Array(e.target.result)).subarray(0, 4);
@@ -86,14 +86,61 @@ function verifyFileType(file, callback) {
     fileReader.readAsArrayBuffer(file);
 }
 
+/**
+ * Verifying the mime type. Tough ISO mime type is not reliable so I added a fallback which verifies the file extension.
+ * File extension source: http://stackoverflow.com/a/1203361/3560404
+ * @returns { Boolean } - Verified or not
+ */
+function verifyFileTypeByMime() {
+    if (file.type.match(/^(application\/iso-image|application\/octet-stream|application\/octetstream)$/)) {
+        return true;
+    }
+    else {
+        var ext = file.name.substr((~-file.name.lastIndexOf(".") >>> 0) + 2);
+        return ext.match(/^(iso|exe)$/) !== null;
+    }
+}
+
+/**
+ * Check if the file size isn't bigger than the disk size
+ */
+function verifyFileSize() {
+    if (selectedDisk !== undefined && file !== undefined) {
+        if (selectedDisk.realSize < file.size) {
+            fileSizeError.show();
+        }
+        else {
+            fileSizeError.hide();
+        }
+    }
+}
+/**
+ *
+ */
+function verifyFileType() {
+    if (selectedDisk !== undefined && file !== undefined) {
+        filePath.val(file.path);
+        validFile = verifyFileTypeByMime();
+        if (validFile) {
+            filePath[0].className = 'file-path validate valid';
+            fileTypeError.hide();
+        }
+        else {
+            filePath[0].className = 'file-path validate invalid';
+            fileTypeError.show();
+        }
+    }
+}
+
 //Event listeners
 selectList.on('change', function (e) {
-    console.log();
     diskList.forEach(function (disk) {
         if (selectList.val() == disk.path) {
             selectedDisk = disk;
         }
-    })
+    });
+    verifyFileType();
+    verifyFileSize();
 });
 
 inputFile.on('change', function (e) {
@@ -101,24 +148,8 @@ inputFile.on('change', function (e) {
     if (document.getElementById('inputFile').files[0]) {
         file = document.getElementById('inputFile').files[0];
         console.log(file);
-        filePath.val(file.path);
-        verifyFileType(file, function (verified) {
-            validFile = verified;
-            if (validFile) {
-                filePath[0].className = 'file-path validate valid';
-                fileTypeError.hide();
-                if (selectedDisk.realSize < file.size) {
-                    fileSizeError.show();
-                }
-                else {
-                    fileSizeError.hide();
-                }
-            }
-            else {
-                filePath[0].className = 'file-path validate invalid';
-                fileTypeError.show();
-            }
-        });
+        verifyFileType();
+        verifyFileSize();
     }
     return false;
 });
