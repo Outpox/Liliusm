@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="teal lighten-5">
+<body class="">
 <div class="container">
     <div class="row center">
         <h1>LILIUSM</h1>
     </div>
     <div class="row">
-        <div class="teal lighten-4 step">
+        <div class="step">
             <div class="row" style="margin-bottom: 0;">
                 <h3 style="margin-bottom: 0;">
                     <span data-resource="chooseDrive"></span>
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="teal lighten-4 step">
+        <div class="step">
             <h3 style="margin-bottom: 0;">
                 <span data-resource="selectFile"></span>
             </h3>
@@ -51,6 +51,11 @@
             <div id="fileSizeError" class="red-text" style="display: none;">
                 <i class="material-icons">error_outline</i><span class="fileErrorSpan" data-resource="fileSizeError"></span>
             </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 50px;">
+        <div class="step center-align">
+            <div class="btn-large" data-resource="startInstall"></div>
         </div>
     </div>
     We are using node
@@ -75,5 +80,6 @@
 <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
 <script src="js/index.js"></script>
 <script src="js/menu.js"></script>
+<script src="js/fileTools.js"></script>
 </body>
 </html>

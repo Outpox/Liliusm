@@ -36,6 +36,14 @@
     font-feature-settings: 'liga';
 }
 
+html, body {
+    overflow: hidden;
+}
+
+body {
+    background: no-repeat center/100% url(../img/background.png);
+}
+
 .step {
     padding: 2px 20px;
     border-radius: 3px
