@@ -11,7 +11,7 @@ const BrowserWindow = electron.BrowserWindow;
 let mainWindow;
 
 function createWindow() {
-    mainWindow = new BrowserWindow({width: 600, height: 800});
+    mainWindow = new BrowserWindow({width: 600, height: 700, resizable: false});
 
     mainWindow.loadURL('file://' + __dirname + '/app/index.html');
 
@@ -26,7 +26,7 @@ app.on('ready', function () {
     createWindow();
 
     ipcMain.on('drives-list', function(event, arg) {
-        getDrivesInfosWindows(function (list) {
+        getDrivesInfos(function (list) {
             event.returnValue = list;
         })
     });
