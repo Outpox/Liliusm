@@ -6,5 +6,6 @@
 	"selectFile": "Select a file",
 	"file": "File",
 	"fileTypeError": " Error, file must be a valid .iso !",
-	"fileSizeError": " Error, file size is bigger than the disk size!"
+	"fileSizeError": " Error, file size is bigger than the disk size!",
+	"startInstall": "Fire it up!"
 }
