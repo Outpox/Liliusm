@@ -66,5 +66,8 @@ function unlockHardDrive() {
 
 
 //Launch app
-translate(navigator.language);
+if (!localStorage.getItem('lang')) {
+    localStorage.setItem('lang', navigator.language);
+}
+translate(localStorage.getItem('lang'));
 updateDrivesList();

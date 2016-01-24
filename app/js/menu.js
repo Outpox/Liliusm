@@ -26,7 +26,8 @@ Object.keys(i18n.getCatalog()).forEach(function (lang) {
         click: function () {
             translate(lang);
             template[1].submenu[0].label = i18n.__('unlockHardDrive');
-            console.log(template[1].submenu[0].label = i18n.__('unlockHardDrive'));
+            localStorage.setItem('lang', lang);
+            //console.log(template[1].submenu[0].label = i18n.__('unlockHardDrive'));
         },
         'label': i18n.__({phrase: 'lang', locale: lang}),
         'type': 'radio',
