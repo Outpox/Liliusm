@@ -9,14 +9,14 @@
 <body class="">
 <div class="container">
     <div class="row center">
-        <h1>LILIUSM</h1>
+        <h1>LiLiUSM</h1>
     </div>
     <div class="row">
         <div class="step">
             <div class="row" style="margin-bottom: 0;">
                 <h3 style="margin-bottom: 0;">
                     <span data-resource="chooseDrive"></span>
-                    <a onclick="updateDrivesList()" class="btn-floating waves-effect waves-light red"
+                    <a onclick="updateDrivesList()" class="btn-floating waves-effect waves-light indigo"
                        style="line-height: 32px;">
                         <i class="material-icons">loop</i>
                     </a>
@@ -24,7 +24,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="drivesList"></select>
+                    <select id="drivesList">No selection</select>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
             </h3>
             <form>
                 <div class="file-field input-field">
-                    <div class="btn">
+                    <div class="btn indigo">
                         <span data-resource="file"></span>
                         <input id="inputFile" type="file">
                     </div>
@@ -45,34 +45,46 @@
                     </div>
                 </div>
             </form>
-            <div id="fileTypeError" class="red-text" style="display: none;">
+            <div id="fileTypeError" class="red-text center" style="display: none;">
                 <i class="material-icons">error_outline</i><span class="fileErrorSpan" data-resource="fileTypeError"></span>
             </div>
-            <div id="fileSizeError" class="red-text" style="display: none;">
+            <div id="fileSizeError" class="red-text center" style="display: none;">
                 <i class="material-icons">error_outline</i><span class="fileErrorSpan" data-resource="fileSizeError"></span>
             </div>
         </div>
     </div>
     <div class="row" style="margin-top: 50px;">
         <div class="step center-align">
-            <div class="btn-large" data-resource="startInstall"></div>
+            <a id="startInstall" class="indigo waves-effect waves-light btn-large modal-trigger" href="#formatModal" data-resource="startInstall"></a>
         </div>
     </div>
-    We are using node
-    <script>document.write(process.versions.node)</script>
-    ,
-    Chrome
-    <script>document.write(process.versions.chrome)</script>
-    ,
-    and Electron
-    <script>document.write(process.versions.electron)</script>
-    .
-    <br>
-    OS:
-    <script>document.write(process.platform)</script>
-    <br>
-    Lang:
-    <script>document.write(navigator.language)</script>
+
+    <!-- Modal Structure -->
+    <div id="formatModal" class="modal">
+        <div class="modal-content">
+            <h4 data-resource="formatModalHeader"></h4>
+            <p data-resource="formatModalText"></p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Agree</a>
+        </div>
+    </div>
+
+    <!--We are using node-->
+    <!--<script>document.write(process.versions.node)</script>-->
+    <!--,-->
+    <!--Chrome-->
+    <!--<script>document.write(process.versions.chrome)</script>-->
+    <!--,-->
+    <!--and Electron-->
+    <!--<script>document.write(process.versions.electron)</script>-->
+    <!--.-->
+    <!--<br>-->
+    <!--OS:-->
+    <!--<script>document.write(process.platform)</script>-->
+    <!--<br>-->
+    <!--Lang:-->
+    <!--<script>document.write(navigator.language)</script>-->
 </div>
 <!--scripts-->
 <script src="../node_modules/jquery/dist/jquery.min.js"></script>
