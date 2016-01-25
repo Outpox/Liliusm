@@ -4,9 +4,12 @@
 	"optionsMenu": "Options",
 	"unlockHardDrive": "Unlock hard drives",
 	"chooseDrive": "Choose a drive",
+	"optionNoSelection": "No selection",
 	"selectFile": "Select a file",
 	"file": "File",
-	"fileTypeError": " Error, file must be a valid .iso !",
-	"fileSizeError": " Error, file size is bigger than the disk size!",
-	"startInstall": "Fire it up!"
+	"fileTypeError": " File must be a valid .iso !",
+	"fileSizeError": " File size is bigger than the disk size!",
+	"startInstall": "Fire it up!",
+	"formatModalHeader": "formatModalHeader",
+	"formatModalText": "formatModalText"
 }
