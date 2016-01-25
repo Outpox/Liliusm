@@ -25,10 +25,24 @@ function createWindow() {
 app.on('ready', function () {
     createWindow();
 
-    ipcMain.on('drives-list', function(event, arg) {
-        getDrivesInfos(function (list) {
-            event.returnValue = list;
-        })
+    ipcMain.on('drives-list', function (event, arg) {
+        switch (process.platform) {
+            case 'win32':
+                getDrivesInfosWindows(function (list) {
+                    event.returnValue = list;
+                });
+                break;
+            case 'darwin':
+                getDrivesInfos(function (list) {
+                    event.returnValue = list;
+                });
+                break;
+            default:
+                getDrivesInfosWindows(function (list) {
+                    event.returnValue = list;
+                });
+                break;
+        }
     });
 });
 
