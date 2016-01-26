@@ -88,7 +88,7 @@ function getDrivesNames(callback) {
 /**
  * Retrieves information from disk by using their name.
  * It had to be separated because the disk list name array can be shorter than the actual disk list information array
- * @param callback - Array
+ * @param callback {Array} - An array containing the disks list.
  */
 function getDrivesInfos(callback) {
 //  Command to get all connected drives
@@ -133,7 +133,7 @@ function getDrivesInfos(callback) {
 
 /**
  * Simulate getDrivesInfos() when developing on Windows
- * @param callback
+ * @param callback {Array} - The disks list
  */
 function getDrivesInfosWindows(callback) {
     var drives = [

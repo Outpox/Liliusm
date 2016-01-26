@@ -21,6 +21,11 @@ var template = [
     }
 ];
 
+/**
+ * i18n.getCatalog() returns a list of lang loaded from the files in ../locales
+ * So for each existing file lang an option is added to the menu.
+ * In order for the menu to be translated, the app has to be restarded (Chrome limitation)
+ */
 Object.keys(i18n.getCatalog()).forEach(function (lang) {
     template[0].submenu.push({
         click: function () {

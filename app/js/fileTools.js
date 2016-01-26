@@ -69,6 +69,9 @@ function verifyFileType() {
     }
 }
 
+/**
+ * Change the file <input> classes depending of the errors states
+ */
 function setFileError() {
     filePath[0].className = (!fileSizeError && !fileTypeError) ? 'file-path validate valid' : 'file-path validate invalid';
 }

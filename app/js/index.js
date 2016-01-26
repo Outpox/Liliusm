@@ -24,6 +24,9 @@ selectList.material_select();
 $('.modal-trigger').leanModal();
 
 //Functions
+/**
+ * Retrieves the disk list from the backend and fill the <select>
+ */
 function updateDrivesList() {
     //console.info('Retrieving drives list');
     diskList = ipcRenderer.sendSync('drives-list');
@@ -52,6 +55,11 @@ function updateDrivesList() {
     selectList.material_select();
 }
 
+/**
+ * Translate the app in the given lang. i18n automatically fallback to the default lang if the parameters doesn't match anything.
+ * In order to translate the menu the app has to be restarted, this is due to a Chrome limitation...
+ * @param lang {string} - 2 chars format : en, fr ...
+ */
 function translate(lang) {
     i18n.setLocale(lang);
     $('[data-resource]').each(function () {
@@ -67,6 +75,11 @@ function unlockHardDrive() {
     updateDrivesList();
 }
 
+/**
+ * Return the disk information matching the given path
+ * @param path {string}
+ * @returns {object} - The disk object or undefined
+ */
 function findDiskByPath(path) {
     var d = undefined;
     diskList.forEach(function (disk) {
@@ -76,6 +89,14 @@ function findDiskByPath(path) {
         }
     });
     return d;
+}
+
+/**
+ * Return true if there is no error.
+ * @returns {boolean}
+ */
+function noError() {
+    return (!fileTypeError && !fileSizeError);
 }
 
 //Event listeners
