@@ -3,7 +3,7 @@ const Menu = remote.Menu;
 
 var template = [
     {
-        label: 'Language',
+        label: i18n.__('language'),
         submenu: []
     },
     {
