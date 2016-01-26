@@ -11,5 +11,9 @@
 	"fileSizeError": " File size is bigger than the disk size!",
 	"startInstall": "Fire it up!",
 	"formatModalHeader": "formatModalHeader",
-	"formatModalText": "formatModalText"
+	"formatModalText": "formatModalText",
+	"formatModalBtn": "formatModalBtn",
+	"errorModalHeader": "Error",
+	"errorModalText": "There are error(s) that need to be fixed.\nMake sure your .iso file is valid.\nMake sure your drive capacity is big enough for the iso file.",
+	"errorModalBtn": "Cancel"
 }

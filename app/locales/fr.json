@@ -11,5 +11,9 @@
 	"fileSizeError": " La taille de l'image est plus grande que la capacité du périphérique !",
 	"startInstall": "C'est parti !",
 	"formatModalHeader": "formatModalHeader",
-	"formatModalText": "formatModalText"
+	"formatModalText": "formatModalText",
+	"formatModalBtn": "formatModalBtn",
+	"errorModalHeader": "errorModalHeader",
+	"errorModalText": "errorModalText",
+	"errorModalBtn": "errorModalBtn"
 }
