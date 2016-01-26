@@ -55,18 +55,28 @@
     </div>
     <div class="row" style="margin-top: 50px;">
         <div class="step center-align">
-            <a id="startInstall" class="indigo waves-effect waves-light btn-large modal-trigger" href="#formatModal" data-resource="startInstall"></a>
+            <a id="startInstall" class="indigo waves-effect waves-light btn-large modal-trigger" data-resource="startInstall"></a>
         </div>
     </div>
 
-    <!-- Modal Structure -->
+    <!-- Format Modal -->
     <div id="formatModal" class="modal">
         <div class="modal-content">
             <h4 data-resource="formatModalHeader"></h4>
             <p data-resource="formatModalText"></p>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Agree</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-light btn indigo" data-resource="formatModalBtn"></a>
+        </div>
+    </div>
+
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <h4 data-resource="errorModalHeader"></h4>
+            <p data-resource="errorModalText"></p>
+        </div>
+        <div class="modal-footer">
+            <a id="errorModalBtn" href="#!" class="modal-action modal-close waves-effect waves-light btn indigo" data-resource="errorModalBtn"></a>
         </div>
     </div>
 

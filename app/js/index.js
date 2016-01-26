@@ -101,12 +101,21 @@ function noError() {
 
 //Event listeners
 $('#startInstall').on('click', function () {
-    selectedDisk = findDiskByPath(selectList.val());
-    if (selectedDisk !== undefined) {
-        //[...]
+    console.log(noError().toString());
+    if (noError()) {
+        selectedDisk = findDiskByPath(selectList.val());
+        if (selectedDisk !== undefined) {
+            //[...]
+        }
+    }
+    else {
+        $("#errorModal").openModal();
     }
 });
 
+$("#errorModalBtn").on('click', function () {
+    $("#errorModal").closeModal();
+});
 //Launch app
 if (!localStorage.getItem('lang')) {
     localStorage.setItem('lang', navigator.language);
