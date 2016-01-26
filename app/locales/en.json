@@ -9,11 +9,14 @@
 	"file": "File",
 	"fileTypeError": " File must be a valid .iso !",
 	"fileSizeError": " File size is bigger than the disk size!",
+	"noSelectedFileError": " Please select a file.",
+	"noSelectedDiskError": " Please select a disk.",
 	"startInstall": "Fire it up!",
 	"formatModalHeader": "formatModalHeader",
 	"formatModalText": "formatModalText",
 	"formatModalBtn": "formatModalBtn",
 	"errorModalHeader": "Error",
-	"errorModalText": "There are error(s) that need to be fixed.\nMake sure your .iso file is valid.\nMake sure your drive capacity is big enough for the iso file.",
-	"errorModalBtn": "Cancel"
+	"errorModalText": "There are error(s) that need to be fixed.",
+	"errorModalBtn": "Cancel",
+	"errorModalBtnForce": "Proceed anyway"
 }
