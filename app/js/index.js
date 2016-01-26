@@ -16,12 +16,13 @@ var diskList = [];
 var selectedDisk;
 var inputFile = $("#inputFile");
 var filePath = $("#filePath");
+var noSelectedFileErrorEl = $("#noSelectedFileError"), noSelectedFileError = true;
+var noSelectedDiskErrorEl = $("#noSelectedDiskError"), noSelectedDiskError = true;
 var fileTypeErrorEl = $("#fileTypeError"), fileTypeError = false;
 var fileSizeErrorEl = $("#fileSizeError"), fileSizeError = false;
 var file;
 var validFile = false;
 selectList.material_select();
-$('.modal-trigger').leanModal();
 
 //Functions
 /**
@@ -96,12 +97,18 @@ function findDiskByPath(path) {
  * @returns {boolean}
  */
 function noError() {
-    return (!fileTypeError && !fileSizeError);
+    if (!noSelectedFileError) {
+        verifyFileSize();
+        verifyFileType();
+        return (!fileTypeError && !fileSizeError);
+    }
+    else {
+
+    }
 }
 
 //Event listeners
 $('#startInstall').on('click', function () {
-    console.log(noError().toString());
     if (noError()) {
         selectedDisk = findDiskByPath(selectList.val());
         if (selectedDisk !== undefined) {
@@ -109,13 +116,14 @@ $('#startInstall').on('click', function () {
         }
     }
     else {
-        $("#errorModal").openModal();
+        $("#errorModal").openModal({dismissible: false});
     }
 });
 
 $("#errorModalBtn").on('click', function () {
     $("#errorModal").closeModal();
 });
+
 //Launch app
 if (!localStorage.getItem('lang')) {
     localStorage.setItem('lang', navigator.language);
