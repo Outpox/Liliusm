@@ -24,7 +24,10 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="drivesList">No selection</select>
+                    <select id="drivesList"></select>
+                </div>
+                <div id="noSelectedDiskError" class="red-text center" style="display: none;">
+                    <i class="material-icons">error_outline</i><span class="fileErrorSpan" data-resource="noSelectedDiskError"></span>
                 </div>
             </div>
         </div>
@@ -51,6 +54,9 @@
             <div id="fileSizeError" class="red-text center" style="display: none;">
                 <i class="material-icons">error_outline</i><span class="fileErrorSpan" data-resource="fileSizeError"></span>
             </div>
+            <div id="noSelectedFileError" class="red-text center" style="display: none;">
+                <i class="material-icons">error_outline</i><span class="fileErrorSpan" data-resource="noSelectedFileError"></span>
+            </div>
         </div>
     </div>
     <div class="row" style="margin-top: 50px;">
@@ -76,7 +82,8 @@
             <p data-resource="errorModalText"></p>
         </div>
         <div class="modal-footer">
-            <a id="errorModalBtn" href="#!" class="modal-action modal-close waves-effect waves-light btn indigo" data-resource="errorModalBtn"></a>
+            <a id="errorModalBtnForce" class="waves-effect waves-light btn red lighten-2" data-resource="errorModalBtnForce" style="float: left;"></a>
+            <a id="errorModalBtn" class="waves-effect waves-light btn green darken-1" data-resource="errorModalBtn"></a>
         </div>
     </div>
 

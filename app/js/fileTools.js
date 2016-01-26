@@ -40,7 +40,7 @@ function verifyFileTypeByMime() {
  * Check if the file size isn't bigger than the disk size
  */
 function verifyFileSize() {
-    if (selectedDisk !== undefined && file !== undefined) {
+    if (file !== undefined) {
         if (selectedDisk.realSize < file.size) {
             fileSizeErrorEl.show();
             fileSizeError = true;
