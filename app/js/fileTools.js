@@ -40,23 +40,27 @@ function verifyFileTypeByMime() {
  * Check if the file size isn't bigger than the disk size
  */
 function verifyFileSize() {
-    if (file !== undefined) {
+    if (selectedDisk !== undefined && file !== undefined) {
         if (selectedDisk.realSize < file.size) {
             fileSizeErrorEl.show();
             fileSizeError = true;
         }
         else {
             fileSizeErrorEl.hide();
-            setFileError(false);
             fileSizeError = false;
         }
+        setFileError();
+    }
+    else {
+        fileSizeErrorEl.hide();
+        fileSizeError = false;
     }
 }
 /**
  * Verify the file type
  */
 function verifyFileType() {
-    if (selectedDisk !== undefined && file !== undefined) {
+    if (file !== undefined) {
         filePath.val(file.path);
         validFile = verifyFileTypeByMime();
         fileTypeError = !validFile;
@@ -66,6 +70,10 @@ function verifyFileType() {
         else {
             fileTypeErrorEl.show();
         }
+        setFileError();
+    }
+    else {
+        fileTypeErrorEl.hide();
     }
 }
 
@@ -83,6 +91,7 @@ selectList.on('change', function (e) {
             selectedDisk = disk;
         }
     });
+    noSelectedDiskErrorHandle();
     verifyFileType();
     verifyFileSize();
 });
@@ -92,6 +101,7 @@ inputFile.on('change', function (e) {
     if (document.getElementById('inputFile').files[0]) {
         file = document.getElementById('inputFile').files[0];
         console.log(file);
+        noSelectedFileErrorHandle();
         verifyFileType();
         verifyFileSize();
     }

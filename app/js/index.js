@@ -29,6 +29,10 @@ selectList.material_select();
  * Retrieves the disk list from the backend and fill the <select>
  */
 function updateDrivesList() {
+    fileSizeErrorEl.hide();
+    if (!fileTypeError) {
+        filePath[0].className = 'file-path validate';
+    }
     //console.info('Retrieving drives list');
     diskList = ipcRenderer.sendSync('drives-list');
     //console.log(diskList);
@@ -84,7 +88,6 @@ function unlockHardDrive() {
 function findDiskByPath(path) {
     var d = undefined;
     diskList.forEach(function (disk) {
-        console.log(disk);
         if (disk.path === path) {
             d = disk;
         }
@@ -97,13 +100,15 @@ function findDiskByPath(path) {
  * @returns {boolean}
  */
 function noError() {
+    noSelectedDiskErrorHandle();
+    noSelectedFileErrorHandle();
     if (!noSelectedFileError) {
         verifyFileSize();
         verifyFileType();
         return (!fileTypeError && !fileSizeError);
     }
     else {
-
+        return false;
     }
 }
 
@@ -123,6 +128,8 @@ $('#startInstall').on('click', function () {
 $("#errorModalBtn").on('click', function () {
     $("#errorModal").closeModal();
 });
+
+
 
 //Launch app
 if (!localStorage.getItem('lang')) {
