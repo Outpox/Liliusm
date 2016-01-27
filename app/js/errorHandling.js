@@ -9,7 +9,6 @@ function noSelectedDiskErrorHandle() {
 }
 
 function noSelectedFileErrorHandle() {
-    console.log(document.getElementById('inputFile').files);
     noSelectedFileError = document.getElementById('inputFile').files[0] == undefined;
     if (noSelectedFileError) {
         noSelectedFileErrorEl.show();

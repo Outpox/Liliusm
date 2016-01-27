@@ -100,7 +100,6 @@ inputFile.on('change', function (e) {
     e.preventDefault();
     if (document.getElementById('inputFile').files[0]) {
         file = document.getElementById('inputFile').files[0];
-        console.log(file);
         noSelectedFileErrorHandle();
         verifyFileType();
         verifyFileSize();
