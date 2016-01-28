@@ -55,3 +55,16 @@ body {
     top: -6px;
     position: relative;
 }
+
+#update {
+    transition-duration: 0.2s;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: transform;
+    overflow:hidden;
+    box-shadow: none;
+}
+#update:hover {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    box-shadow: none;
+}
