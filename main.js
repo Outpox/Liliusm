@@ -47,7 +47,7 @@ app.on('ready', function () {
     ipcMain.on('formatKey', function (event, arg) {
         switch (process.platform) {
             case 'darwin':
-                formatKey(arg, function(result) {
+                formatKey(arg, function (result) {
                     event.sender.send('formatResult', result);
                 });
                 break;
@@ -71,14 +71,14 @@ app.on('activate', function () {
  * Retrieves the disk name of all connected drives
  * @param callback - Array of disk name
  */
-function getDrivesNames(callback) {
+function getDrivesList(callback) {
 //  Command to get all connected drives names
     exec('diskutil list -plist', function (error, stdout, stderr) {
         if (error == null) {
             if (stderr.length == 0) {
                 parseString(stdout, function (err, result) {
                     if (err == null) {
-                        var diskNames = result.plist.dict[0].array[2].string;
+                        var diskNames = result.plist.dict[0].array[3].string;
                         callback(diskNames);
                     } else {
                         console.log(err);
@@ -94,22 +94,6 @@ function getDrivesNames(callback) {
     })
 }
 
-function formatKey(disk, callback) {
-//diskutil partitionDisk disk3 MBR MS-DOS TEST 0b
-    exec('diskutil partitionDisk /dev/' + disk.path + ' MBR MS-DOS LILIUSM 0b', function (error, stdout, stderr) {
-        if (error == null) {
-            if (stderr.length == 0) {
-                callback('ok');
-            }
-            else {
-                callback(stderr);
-            }
-        }
-        else {
-            callback(error);
-        }
-    })
-}
 
 /**
  * Retrieves information from disk by using their name.
@@ -119,25 +103,37 @@ function formatKey(disk, callback) {
 function getDrivesInfos(callback) {
 //  Command to get all connected drives
     var disks = [];
-    getDrivesNames(function (list) {
+    getDrivesList(function (list) {
         if (list.length > 0) {
-            list.forEach(function (diskName, i) {
+            var counter = 0;
+            list.forEach(function (path, i) {
                 //We need to push a backslash before spaces
-                var parsedName = diskName.replace(new RegExp(" ", 'g'), "\\ ");
+                var parsedName = path.replace(new RegExp(" ", 'g'), "\\ ");
                 exec('diskutil list -plist ' + parsedName, function (error, stdout, stderr) {
+                    counter++;
                     if (error == null) {
                         if (stderr.length == 0) {
                             parseString(stdout, function (err, result) {
                                 if (err == null) {
-                                    var diskSize = parseInt(result.plist.dict[0].array[1].dict[0].integer[0]);
-                                    var diskPath = result.plist.dict[0].array[3].string[0];
-                                    var size = filesize(diskSize).human();
-                                    //If size is greater than 64Gb it's most likely a hard drive.
-                                    //TODO Improve disk type detection
-                                    var type = (diskSize > 64000000000) ? 'hdd' : 'usb';
-                                    disks.push({'name': diskName, 'path': diskPath, 'size': size, 'realSize': diskSize, 'type': type});
-
-                                    if (list.length == disks.length) {
+                                    //If result.plist.dict[0].array[2].string (which is supposed to contain the name)
+                                    //isn't an array, this means that it has no name which we don't handle.
+                                    if (result.plist.dict[0].array[2].string !== undefined) {
+                                        var diskSize = parseInt(result.plist.dict[0].array[1].dict[0].integer[0]);
+                                        var diskName = result.plist.dict[0].array[2].string[0];
+                                        var diskPath = result.plist.dict[0].array[3].string[0];
+                                        var size = filesize(diskSize).human();
+                                        //If size is greater than 64Gb it's most likely a hard drive.
+                                        //TODO Improve disk type detection
+                                        var type = (diskSize > 64000000000) ? 'hdd' : 'usb';
+                                        disks.push({
+                                            'name': diskName,
+                                            'path': diskPath,
+                                            'size': size,
+                                            'realSize': diskSize,
+                                            'type': type
+                                        });
+                                    }
+                                    if (list.length == counter) {
                                         callback(disks);
                                     }
                                 } else {
@@ -155,6 +151,23 @@ function getDrivesInfos(callback) {
             });
         }
     });
+}
+
+function formatKey(disk, callback) {
+//diskutil partitionDisk disk3 MBR MS-DOS TEST 0b
+    exec('diskutil partitionDisk /dev/' + disk.path + ' MBR MS-DOS LILIUSM 0b', function (error, stdout, stderr) {
+        if (error == null) {
+            if (stderr.length == 0) {
+                callback('ok');
+            }
+            else {
+                callback(stderr);
+            }
+        }
+        else {
+            callback(error);
+        }
+    })
 }
 
 /**
