@@ -139,8 +139,32 @@ function formatModal() {
 }
 
 $("#formatModalBtn").on('click', function () {
-    var ret = ipcRenderer.sendSync('formatKey', selectedDisk);
-    console.log(ret);
+    ipcRenderer.send('formatKey', selectedDisk);
+    $("#formatModal").closeModal();
+    $("#formatProgressModal").openModal({dismissible: false});
+
+    ipcRenderer.on('formatResult', function (event, formatResult) {
+        console.log(formatResult);
+        if (formatResult == 'ok') {
+            $("#formatProgressLoader").hide();
+            $("#formatProgressSuccess").show();
+        }
+        else {
+            $("#formatProgressLoader").hide();
+            $("#formatProgressError").show();
+            $("#formatProgressErrorMessage").text(formatResult.toString());
+            $("#formatProgressErrorMessage").show();
+            $("#formatProgressModalFooter").show();
+        }
+    });
+});
+
+$("#formatModalBtnCancel").on('click', function () {
+    $("#formatModal").closeModal();
+});
+
+$("#formatProgressModalBtnClose").on('click', function () {
+    $("#formatProgressModal").closeModal();
 });
 
 //Launch app

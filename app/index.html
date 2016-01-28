@@ -16,7 +16,7 @@
             <div class="row" style="margin-bottom: 0;">
                 <h3 style="margin-bottom: 0;">
                     <span data-resource="chooseDrive"></span>
-                    <a onclick="updateDrivesList()" class="btn-floating waves-effect waves-light indigo"
+                    <a id="update" onclick="updateDrivesList()" class="btn-floating waves-effect waves-light indigo"
                        style="line-height: 32px;">
                         <i class="material-icons">loop</i>
                     </a>
@@ -77,13 +77,44 @@
         </div>
     </div>
 
+    <!-- Format Progress Modal -->
+    <div id="formatProgressModal" class="modal">
+        <div class="modal-content">
+            <h4 data-resource="formatProgressModalHeader"></h4>
+            <p data-resource="formatProgressModalText"></p>
+
+            <div class="center-align">
+                <div id="formatProgressLoader" class="preloader-wrapper small active">
+                    <div class="spinner-layer spinner-green-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <i id="formatProgressSuccess" style="display: none;" class="material-icons medium green-text">done</i>
+                <i id="formatProgressError" style="display: none;" class="material-icons medium red-text">close</i>
+                <pre id="formatProgressErrorMessage" style="display: none;" class="left-align"></pre>
+            </div>
+        </div>
+        <div id="formatProgressModalFooter" class="modal-footer" style="display: none;">
+            <a id="formatProgressModalBtnClose" class="waves-effect waves-light btn-flat red lighten-2" data-resource="formatProgressModalBtnClose" style="float: left;"></a>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
     <div id="errorModal" class="modal">
         <div class="modal-content">
             <h4 data-resource="errorModalHeader"></h4>
             <p data-resource="errorModalText"></p>
         </div>
         <div class="modal-footer">
-            <!--<a id="errorModalBtnForce" class="waves-effect waves-light btn-flat red lighten-2" data-resource="errorModalBtnForce" style="float: left;"></a>-->
+            <a id="errorModalBtnForce" class="waves-effect waves-light btn-flat red lighten-2" data-resource="errorModalBtnForce" style="float: left;"></a>
             <a id="errorModalBtn" class="waves-effect waves-light btn green" data-resource="errorModalBtn"></a>
         </div>
     </div>
