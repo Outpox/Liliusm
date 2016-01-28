@@ -12,11 +12,12 @@
 	"noSelectedFileError": " Please select a file.",
 	"noSelectedDiskError": " Please select a disk.",
 	"startInstall": "C'est parti !",
-	"formatModalHeader": "formatModalHeader",
-	"formatModalText": "formatModalText",
-	"formatModalBtn": "formatModalBtn",
-	"errorModalHeader": "errorModalHeader",
-	"errorModalText": "errorModalText",
-	"errorModalBtn": "errorModalBtn",
-	"errorModalBtnForce": "Proceed anyway"
+	"formatModalHeader": "Formatage de la clé",
+	"formatModalText": "Il est nécessaire de formater la clé au format FAT.",
+	"formatModalBtn": "Ok",
+	"formatModalBtnCancel": "Annuler",
+	"errorModalHeader": "Erreur",
+	"errorModalText": "Il y'a une ou des erreurs qui doivent être corrigées.",
+	"errorModalBtn": "Annuler",
+	"errorModalBtnForce": "Ignorer"
 }
