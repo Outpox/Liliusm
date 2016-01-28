@@ -79,6 +79,19 @@ if (process.platform == 'darwin') {
                 type: 'separator'
             },
             {
+                label: 'Copy',
+                accelerator: 'Command+C',
+                role: 'copy'
+            },
+            {
+                label: 'Pate',
+                accelerator: 'Command+V',
+                role: 'paste'
+            },
+            {
+                type: 'separator'
+            },
+            {
                 label: 'Quit',
                 accelerator: 'Command+Q',
                 click: function () {
