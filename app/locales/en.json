@@ -19,5 +19,8 @@
 	"errorModalHeader": "Error",
 	"errorModalText": "There are error(s) that need to be fixed.",
 	"errorModalBtn": "Cancel",
-	"errorModalBtnForce": "Proceed anyway"
+	"errorModalBtnForce": "Proceed anyway",
+	"formatProgressModalHeader": "Formatting in progress",
+	"formatProgressModalText": "The key is being formatted, please do not remove it.",
+	"formatProgressModalBtnClose": "Close"
 }

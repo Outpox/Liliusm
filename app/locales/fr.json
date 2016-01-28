@@ -19,5 +19,8 @@
 	"errorModalHeader": "Erreur",
 	"errorModalText": "Il y'a une ou des erreurs qui doivent être corrigées.",
 	"errorModalBtn": "Annuler",
-	"errorModalBtnForce": "Ignorer"
+	"errorModalBtnForce": "Ignorer",
+	"formatProgressModalHeader": "Formatage en cours",
+	"formatProgressModalText": "La clé est en train d'être formatée, merci de ne pas la retirer.",
+	"formatProgressModalBtnClose": "Fermer"
 }
