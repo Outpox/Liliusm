@@ -56,6 +56,10 @@ body {
     position: relative;
 }
 
+.select-dropdown li span {
+    color: #3f51b5;
+}
+
 #update {
     transition-duration: 0.2s;
     -webkit-transition-property: -webkit-transform;
