@@ -48,7 +48,7 @@ app.on('ready', function () {
         switch (process.platform) {
             case 'darwin':
                 formatKey(arg, function(result) {
-                    event.returnValue = result;
+                    event.sender.send('formatResult', result);
                 });
                 break;
         }
@@ -96,8 +96,19 @@ function getDrivesNames(callback) {
 
 function formatKey(disk, callback) {
 //diskutil partitionDisk disk3 MBR MS-DOS TEST 0b
-    console.log(disk.path);
-    callback('ok');
+    exec('diskutil partitionDisk /dev/' + disk.path + ' MBR MS-DOS LILIUSM 0b', function (error, stdout, stderr) {
+        if (error == null) {
+            if (stderr.length == 0) {
+                callback('ok');
+            }
+            else {
+                callback(stderr);
+            }
+        }
+        else {
+            callback(error);
+        }
+    })
 }
 
 /**
