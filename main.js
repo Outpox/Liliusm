@@ -44,6 +44,15 @@ app.on('ready', function () {
                 break;
         }
     });
+    ipcMain.on('formatKey', function (event, arg) {
+        switch (process.platform) {
+            case 'darwin':
+                formatKey(arg, function(result) {
+                    event.returnValue = result;
+                });
+                break;
+        }
+    })
 });
 
 app.on('window-all-closed', function () {
@@ -83,6 +92,12 @@ function getDrivesNames(callback) {
             console.log(error);
         }
     })
+}
+
+function formatKey(disk, callback) {
+//diskutil partitionDisk disk3 MBR MS-DOS TEST 0b
+    console.log(disk.path);
+    callback('ok');
 }
 
 /**

@@ -117,7 +117,7 @@ $('#startInstall').on('click', function () {
     if (noError()) {
         selectedDisk = findDiskByPath(selectList.val());
         if (selectedDisk !== undefined) {
-            //[...]
+            formatModal();
         }
     }
     else {
@@ -129,7 +129,19 @@ $("#errorModalBtn").on('click', function () {
     $("#errorModal").closeModal();
 });
 
+$("#errorModalBtnForce").on('click', function () {
+    $("#errorModal").closeModal();
+    formatModal();
+});
 
+function formatModal() {
+    $("#formatModal").openModal({dismissible: false});
+}
+
+$("#formatModalBtn").on('click', function () {
+    var ret = ipcRenderer.sendSync('formatKey', selectedDisk);
+    console.log(ret);
+});
 
 //Launch app
 if (!localStorage.getItem('lang')) {
