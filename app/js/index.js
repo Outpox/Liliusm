@@ -78,6 +78,11 @@ function translate(lang) {
 function unlockHardDrive() {
     unlockedHardDrive = !unlockedHardDrive;
     updateDrivesList();
+    if (selectedDisk.path) {
+        if (selectedDisk.path == 'hdd') {
+            selectedDisk = {};
+        }
+    }
 }
 
 /**
