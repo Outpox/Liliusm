@@ -22,5 +22,7 @@
 	"errorModalBtnForce": "Proceed anyway",
 	"formatProgressModalHeader": "Formatting in progress",
 	"formatProgressModalText": "The key is being formatted, please do not remove it.",
-	"formatProgressModalBtnClose": "Close"
+	"formatProgressModalBtnClose": "Close",
+	"convertFileModalHeader": "Preparing file",
+	"convertFileModalText": "The file is beeing converted, please do not the touch it."
 }

@@ -127,6 +127,39 @@ function objToString (obj) {
     return str;
 }
 
+/**
+ * Open the format modal with the 'dismissible = false' option
+ */
+function formatModal() {
+    $("#formatModal").openModal({dismissible: false});
+}
+
+/**
+ * Open the convert modal and handle the conversion
+ */
+function convertFileModal() {
+    $("#convertFileModal").openModal({dismissible: false});
+    ipcRenderer.send('convertFile', file);
+    ipcRenderer.on('convertResult', function (event, convertResult) {
+        console.log(convertResult);
+        if (convertResult == 'ok') {
+            $("#convertFileLoader").hide();
+            $("#convertFileSuccess").show();
+            setTimeout(function () {
+                $("#convertFileModal").closeModal();
+                convertFileModal();
+            }, 2000);
+        }
+        else {
+            $("#convertFileLoader").hide();
+            $("#convertFileError").show();
+            $("#convertFileErrorMessage").text(objToString(convertResult));
+            $("#convertFileErrorMessage").show();
+            $("#convertFileModalFooter").show();
+        }
+    });
+}
+
 //Event listeners
 $('#startInstall').on('click', function () {
     if (noError()) {
@@ -149,10 +182,6 @@ $("#errorModalBtnForce").on('click', function () {
     formatModal();
 });
 
-function formatModal() {
-    $("#formatModal").openModal({dismissible: false});
-}
-
 $("#formatModalBtn").on('click', function () {
     ipcRenderer.send('formatKey', selectedDisk);
     $("#formatModal").closeModal();
@@ -163,6 +192,10 @@ $("#formatModalBtn").on('click', function () {
         if (formatResult == 'ok') {
             $("#formatProgressLoader").hide();
             $("#formatProgressSuccess").show();
+            setTimeout(function () {
+                $("#formatProgressModal").closeModal();
+                convertFileModal();
+            }, 2000);
         }
         else {
             $("#formatProgressLoader").hide();
@@ -180,6 +213,10 @@ $("#formatModalBtnCancel").on('click', function () {
 
 $("#formatProgressModalBtnClose").on('click', function () {
     $("#formatProgressModal").closeModal();
+});
+
+$("#convertFileModalBtnClose").on('click', function () {
+    $("#converFileModal").closeModal();
 });
 
 //Launch app

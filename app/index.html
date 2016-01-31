@@ -107,6 +107,36 @@
         </div>
     </div>
 
+    <!-- Convert file modal -->
+    <div id="convertFileModal" class="modal">
+        <div class="modal-content">
+            <h4 data-resource="convertFileModalHeader"></h4>
+            <p data-resource="convertFileModalText"></p>
+        </div>
+
+        <div class="center-align">
+            <div id="convertFileLoader" class="preloader-wrapper small active">
+                <div class="spinner-layer spinner-indigo-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <i id="convertFileSuccess" style="display: none;" class="material-icons medium green-text">done</i>
+            <i id="convertFileError" style="display: none;" class="material-icons medium red-text">close</i>
+            <pre id="convertFileErrorMessage" style="display: none;" class="left-align"></pre>
+        </div>
+        <div id="convertFileModalFooter" class="modal-footer" style="display: none;">
+            <a id="convertFileModalBtnClose" class="waves-effect waves-light btn-flat red lighten-2" data-resource="formatProgressModalBtnClose" style="float: left;"></a>
+        </div>
+    </div>
+
     <!-- Error Modal -->
     <div id="errorModal" class="modal">
         <div class="modal-content">

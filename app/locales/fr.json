@@ -22,5 +22,7 @@
 	"errorModalBtnForce": "Ignorer",
 	"formatProgressModalHeader": "Formatage en cours",
 	"formatProgressModalText": "La clé est en train d'être formatée, merci de ne pas la retirer.",
-	"formatProgressModalBtnClose": "Fermer"
+	"formatProgressModalBtnClose": "Fermer",
+	"convertFileModalHeader": "Préparation de l'image",
+	"convertFileModalText": "Conversion de l'image disque en cours, merci de ne pas y toucher."
 }
