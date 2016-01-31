@@ -52,7 +52,16 @@ app.on('ready', function () {
                 });
                 break;
         }
-    })
+    });
+    ipcMain.on('convertFile', function (event, arg) {
+        switch (process.platform) {
+            case 'darwin':
+                convertFile(arg, function (result) {
+                    event.sender.send('convertResult', result);
+                });
+                break;
+        }
+    });
 });
 
 app.on('window-all-closed', function () {
@@ -153,11 +162,38 @@ function getDrivesInfos(callback) {
     });
 }
 
+/**
+ * Format the selected disk. Not using sudo, should be enough to avoid to format the main disk.
+ * @param disk {Object} - Disk variable in order to get the path (minus /dev/, ie: disk3)
+ * @param callback {function} - Called when formatting is done
+ */
 function formatKey(disk, callback) {
 //diskutil partitionDisk disk3 MBR MS-DOS TEST 0b
     exec('diskutil partitionDisk /dev/' + disk.path + ' MBR MS-DOS LILIUSM 0b', function (error, stdout, stderr) {
         if (error == null) {
             if (stderr.length == 0) {
+                callback('ok');
+            }
+            else {
+                callback(stderr);
+            }
+        }
+        else {
+            callback(error);
+        }
+    })
+}
+
+/**
+ * Convert the .iso file in .dmg
+ * @param file {Object} - The given file. Used to retrieve the absolute path of the file
+ * @param callback {function} - Called when converting is done
+ */
+function convertFile(file, callback) {
+//hdiutil convert ~/path/to/ubuntu.iso -format UDRW -o ~/path/to/target.img
+    exec('hdiutil convert '+ file.path +' -format UDRW -o /tmp/liliusm.img', function (error, stdout, stderr) {
+        if (error == null) {
+            if (stderr == 0) {
                 callback('ok');
             }
             else {
