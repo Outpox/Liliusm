@@ -127,6 +127,24 @@ function objToString (obj) {
     return str;
 }
 
+function setDefaultFormatModal() {
+    $("#formatProgressLoader").show();
+    $("#formatProgressSuccess").hide();
+    $("#formatProgressError").hide();
+    $("#formatProgressErrorMessage").text('');
+    $("#formatProgressErrorMessage").hide();
+    $("#formatProgressModalFooter").hide();
+}
+
+function setDefaultConvertFileModal() {
+    $("#convertFileLoader").show();
+    $("#convertFileSuccess").hide();
+    $("#convertFileError").hide();
+    $("#convertFileErrorMessage").text('');
+    $("#convertFileErrorMessage").hide();
+    $("#convertFileModalFooter").hide();
+}
+
 /**
  * Open the format modal with the 'dismissible = false' option
  */
@@ -162,6 +180,8 @@ function convertFileModal() {
 
 //Event listeners
 $('#startInstall').on('click', function () {
+    setDefaultConvertFileModal();
+    setDefaultFormatModal();
     if (noError()) {
         selectedDisk = findDiskByPath(selectList.val());
         if (selectedDisk !== undefined) {
